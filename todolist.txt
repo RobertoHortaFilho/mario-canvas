@@ -1,0 +1,15 @@
+player ok
+move ok 
+tiles ok
+collison ok
+gravity ok
+jump ok
+
+offset de cam ok
+camera move ok
+
+enemys 
+
+sprites //meio
+audios
+create map design
