@@ -8,8 +8,10 @@ jump ok
 offset de cam ok
 camera move ok
 
-enemys 
+arrumar camera se movendo mais que o necessario
+
+enemys
 
 sprites //meio
 audios
-create map design
+create map design ok
