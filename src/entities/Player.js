@@ -6,7 +6,7 @@ export class Player {
     this.size = { x: 32, y: 43 };
     this.velh = 0;
     this.velv = 0;
-    this.vel = 4
+    this.vel = 5
     this.walls = walls
     this.posOff = posOff
     this.keys = {
@@ -18,7 +18,7 @@ export class Player {
     this.setSprites()
     this.frameAtual = 0
     this.frameElapsed = 0
-    this.frameTimeOver = 10;
+    this.frameTimeOver = 5;
   }
 
   createSprite( { name, url, frames = 1 } ){
@@ -160,9 +160,7 @@ export class Player {
 
   render(c){
     this.updateFrames()
-    //console.log(typeof this.sprite.run.spr)
-    c.drawImage(this.sprite.spr, (this.pos.x + this.posOff.x), this.pos.y)
-    //c.fillStyle = 'red'
-    //c.fillRect(this.pos.x + this.posOff.x, this.pos.y, this.size.x, this.size.x);    
+    const { w, h } = this.sprites.size
+    c.drawImage(this.sprite.spr, 0 + (this.frameAtual * w), 0, w, h, (this.pos.x + this.posOff.x), this.pos.y, w, h)
   }
 }
