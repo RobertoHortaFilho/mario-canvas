@@ -3,7 +3,7 @@ export class Player {
     this.pos = {}
     this.pos.x = pos.x;
     this.pos.y = pos.y;
-    this.size = { x: 32, y: 48 };
+    this.size = { x: 32, y: 43 };
     this.velh = 0;
     this.velv = 0;
     this.vel = 4
@@ -13,13 +13,39 @@ export class Player {
       up:false,
       left:false,
       right:false}
-    this.sprite = {}
+    this.sprites = {}
+    this.sprite = null
     this.setSprites()
+    this.frameAtual = 0
+    this.frameElapsed = 0
+    this.frameTimeOver = 10;
+  }
+
+  createSprite( { name, url, frames = 1 } ){
+    const img = new Image;
+    img.src = url;
+    this.sprites[name] = {
+      spr : img,
+      frames
+    }
   }
 
   setSprites (){
-    this.sprite.run = new Image()
-    this.sprite.run.src = './src/entities/img/run.png'
+    this.sprites.size = {w:32, h:44}
+    this.createSprite({
+      name: 'run', 
+      url:'./src/entities/img/MarioRun.png',
+      frames:2})
+    this.createSprite({
+      name: 'idle', 
+      url:'../src/entities/img/MarioIdle.png'})
+    this.createSprite({
+      name: 'jump', 
+      url:'.//src/entities/img/MarioJump.png'})
+    this.createSprite({
+      name: 'fall', 
+      url:'./src/entities/img/MarioFall.png'})
+      this.sprite = this.sprites.run
   }
 
   move(){
@@ -119,9 +145,23 @@ export class Player {
     }
   }
 
+  updateFrames() {
+    if (this.frameElapsed <= this.frameTimeOver){
+      this.frameElapsed++
+      return
+    }
+    this.frameElapsed = 0
+    if ((this.frameAtual + 1) < this.sprite.frames){
+      this.frameAtual += 1
+      return
+    }
+    this.frameAtual = 0
+  }
 
   render(c){
-    c.drawImage(this.sprite.run, this.pos.x + this.posOff.x , this.pos.y)
+    this.updateFrames()
+    //console.log(typeof this.sprite.run.spr)
+    c.drawImage(this.sprite.spr, (this.pos.x + this.posOff.x), this.pos.y)
     //c.fillStyle = 'red'
     //c.fillRect(this.pos.x + this.posOff.x, this.pos.y, this.size.x, this.size.x);    
   }
