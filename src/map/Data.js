@@ -16,7 +16,7 @@ export const m1 = [
   '|------------------------------------------------------------------------------------------------------------------------|',
   '|------------------------------------------------------------------------------------------------------------------------|',
   '|-----------f----------------fff-----------------------------------------------------------------------------------------|',
-  '|----p-------------------------------------------------------------------------------------------------------------------|',
+  '|----p------------g------------------------------------------------------------------------------------------------------|',
   '|------------------------------------------------------------------------------------------------------------------------|',
   '|------------------------------------------------------------------------------------------------------------------------|',
   'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
@@ -27,6 +27,7 @@ export const mapas = { m1 }
 export function genearateMap( mapa ) {
   const walls = []
   let playerPos = {x: 0, y: 0};
+  let enemysPos = []
   mapa.forEach((line, indexLine) => {
     for (let indexColum = 0; indexColum < line.length; indexColum +=1 ){
       const letter = line[indexColum]
@@ -40,11 +41,14 @@ export function genearateMap( mapa ) {
         case 'p':
           playerPos = NewGrid(indexColum,indexLine);
           break;
+        case 'g':
+          enemysPos.push({...NewGrid(indexColum,indexLine), type: 'goomba'});
+          break;
         default:
           //air block
           break;
       }
     }
   })
-  return { walls , playerPos }
+  return { walls , playerPos, enemysPos }
 }
