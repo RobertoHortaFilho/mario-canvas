@@ -35,15 +35,23 @@ generateAllMap.enemysPos.forEach((pos) => {
 
 window.enemy = enemysList[0]
 
-function renderGame(){
-  c.fillStyle = 'white'
-  c.clearRect(0,0,canvasSize.w,canvasSize.h);
-  
+const build = () => {
   p.move()
-  p.render(c)
 
   enemysList.forEach((e) => {
     e.move()
+  })
+}
+
+setInterval(() => build(), 1000/60)
+
+const renderGame = () =>{
+  c.fillStyle = 'white'
+  c.clearRect(0,0,canvasSize.w,canvasSize.h);
+
+  p.render(c)
+
+  enemysList.forEach((e) => {
     e.render(c)
   })
 
