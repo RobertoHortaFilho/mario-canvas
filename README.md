@@ -2,7 +2,7 @@
 
 Neste repositório estou criando uma representaçao do classico game do mario world!!! 🏃‍♂️
 
-#### tecnologias 🌍
+#### Tecnologias 🌍
 
 - Canvas: toda a parte grafica do projeto esta sendo feita usando o proprio canvas do navegador.
 - Gerenciamente: Esta sendo feita por uma classe de instancia do proprio game onde ele gerencia mapas animaçoes e toda a logica por tras de todos os movimentos.
